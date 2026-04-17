@@ -1,0 +1,22 @@
+# Compilados e Executáveis (Binários)
+# Ignora arquivos sem extensão (comuns no Linux/Mac para executáveis)
+*
+!*/
+!*.c
+!*.h
+!*.md
+!*.gitignore
+
+# Ignora executáveis específicos do Windows
+*.exe
+*.out
+*.o
+*.obj
+
+# Pastas de configuração do VS Code (opcional)
+# Se você quiser salvar suas configurações de debug, remova a linha abaixo
+.vscode/
+
+# Arquivos temporários e de log
+*.log
+*.tmp
