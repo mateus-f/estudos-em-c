@@ -32,8 +32,21 @@
     -------------------------------------------------------------------------
 */
 
+#include "turma.h"
+
 int main()
 {
-    
+    Turma *t = turma_criar(10);
+
+    turma_adicionar_aluno(t, "Mateus", 10.0);
+    turma_adicionar_aluno(t, "Marcos", 8.5);
+    turma_adicionar_aluno(t, "João", 7.0);
+    turma_adicionar_aluno(t, "Lucas", 9.6);
+    turma_adicionar_aluno(t, "Paulo", 7.9);
+
+    turma_imprimir_lista(t);
+
+    turma_liberar(t);
+
     return 0;
 }
