@@ -37,7 +37,10 @@ Turma *turma_criar(int capacidade)
 int turma_adicionar_aluno(Turma *turma, char *nome, float nota)
 {
     if (turma == NULL)
-        return NULL;
+    {
+        printf("Turma vazia!");
+        return 0;
+    }
 
     if (turma->qtd >= turma->cap)
     {
@@ -48,7 +51,10 @@ int turma_adicionar_aluno(Turma *turma, char *nome, float nota)
     Aluno *aluno = (Aluno *)malloc(sizeof(Aluno));
 
     if (aluno == NULL)
-        return NULL;
+    {
+        printf("Falha na alocação!");
+        return 0;
+    }
 
     aluno->nome = strdup(nome);
     aluno->nota = nota;
@@ -59,5 +65,32 @@ int turma_adicionar_aluno(Turma *turma, char *nome, float nota)
     return 1;
 }
 
-void turma_imprimir_lista(Turma *turma);
-void turma_liberar(Turma *turma);
+void turma_imprimir_lista(Turma *turma)
+{
+    printf("=== TURMA ===================\n");
+    printf("> Total: %d\n> Capacidade máxima: %d\n\n", turma->qtd, turma->cap);
+
+    printf("=== ALUNOS ==================\n");
+    for (int i = 0; i < turma->qtd; i++)
+    {
+        printf("> #%d. %s - Nota: %.2f\n", i + 1, turma->alunos[i]->nome, turma->alunos[i]->nota);
+    }
+};
+
+void turma_liberar(Turma *turma)
+{
+    if (turma == NULL)
+        return;
+
+    for (int i = 0; i < turma->qtd; i++)
+    {
+        if (turma->alunos[i] != NULL)
+        {
+            free(turma->alunos[i]->nome);
+            free(turma->alunos[i]);
+        }
+    }
+
+    free(turma->alunos);
+    free(turma);
+};
